@@ -182,7 +182,7 @@ function activitiesError() {
         return false;
     }
     return true;
-}
+
 
 
 
