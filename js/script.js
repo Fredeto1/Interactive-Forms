@@ -186,10 +186,10 @@ $('#design').on('change', function () {
 
 
 let totalCost= 0
-const totalCostLabel= '<label>Total Cost:</label>';
+const totalCostLabel="<label>Total Cost:</label>";
 $('.activities').append(totalCostLabel);
 
-$('activites').on('change', function(e) {
+$('.activities').on('change', function(e) {
     if ($('input[name="js-frameworks"]').is(':checked')) { 
         $('input[name="express"]').prop('disabled', true)
     } else {
