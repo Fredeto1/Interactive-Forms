@@ -79,7 +79,7 @@ $('.activities').on('change', function (e) {
         $('input[name="js-libs"]').prop('disabled', false)
     }
 
-    const confCheckboxes = [];
+
 
     const selectedText1 = e.target.parentNode.innerText;
     const cost = selectedText1.split('$')[1];
@@ -93,12 +93,45 @@ $('.activities').on('change', function (e) {
 
 });
 
-const $creditPayment = $("#credit-card");
-const $payPal = $creditPayment.next();
-const $bitcoin = $creditPayment.next().next();
+// const $creditPayment = $("#credit-card");
+// const $payPal = $creditPayment.next();
+// $payPal.hide();
+// const $bitcoin = $creditPayment.next().next();
+// $bitcoin.hide();
+
+// $('#payment').on('change', function () {
+//     if ($(this).val() === $creditPayment) {
+//         $creditPayment.show();
+//         $payPal.hide();
+//         $bitcoin.hide();
+//     } else if ($(this).val() === $payPal) {
+//         $payPal.show();
+//         $creditPayment.hide();
+//         $bitcoin.hide();
+//     } else ($(this).val() === $bitcoin); {
+//         $bitcoin.hide();
+//         $creditPayment.hide();
+//         $payPal.hide();
+//     }
+// });
+
+$('.credit-card').show();
+$('p').hide();
 
 $('#payment').on('change', function () {
-
+    if ($(this).val() === "credit card") {
+        $('#credit-card').show();
+        $('p').hide();
+    } else {
+        $('#credit-card').hide();
+    }
+    if ($(this).val() === "paypal") {
+        $('p:first').show();
+        $('p:last').hide();
+    }
+    if ($(this).val() === "bitcoin") {
+        $('p:last').show();
+        $('p:first').hide();
+    }
 });
-
 
