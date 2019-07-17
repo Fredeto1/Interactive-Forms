@@ -53,7 +53,7 @@ $('#design').on('change', function () {
 
 
 let totalCost = 0
-const totalCostLabel = '<label>Total Cost:</label>';
+const totalCostLabel = '<label id="totalCost">Total Cost:</label>';
 $('.activities').append(totalCostLabel);
 
 $('.activities').on('change', function (e) {
@@ -79,19 +79,26 @@ $('.activities').on('change', function (e) {
         $('input[name="js-libs"]').prop('disabled', false)
     }
 
-    var confCheckboxes = [];
+    const confCheckboxes = [];
 
-    var selectedText1 = e.target.parentNode.innerText;
-    var cost = selectedText1.split('$')[1];
+    const selectedText1 = e.target.parentNode.innerText;
+    const cost = selectedText1.split('$')[1];
     if (e.target.checked) {
         totalCost = totalCost + parseInt(cost);
     } else {
         totalCost = totalCost - parseInt(cost);
     }
-    console.log(totalCost
-    )
+    document.getElementById("totalCost").innerText = "Total Cost $" + totalCost
+
 
 });
 
+const $creditPayment = $("#credit-card");
+const $payPal = $creditPayment.next();
+const $bitcoin = $creditPayment.next().next();
+
+$('#payment').on('change', function () {
+
+});
 
 
