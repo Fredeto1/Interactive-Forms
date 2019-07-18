@@ -135,3 +135,37 @@ $('#payment').on('change', function () {
     }
 });
 
+
+
+//Adding error text
+$('label[for="name"]').after('<label class="error" id="name-error"><font color="red">Name field must not be empty</font></label>');
+$('#name-error').hide();
+
+function validateName() {
+    if ($('#name').val() === "") {
+        $('#name-error').show();
+    } else {
+        $('#name-error').hide();
+    }
+}
+
+$('label[for="mail"]').after('<label class="error" id="email-error"><font color="red">Please enter a valid email address</font></label>');
+$('#email-error').hide();
+
+function validateEmail() {
+    if ($('#mail').val() === "") {
+        $('#email-error').show();
+    } else {
+        $('#email-error').hide();
+    }
+}
+
+$('fieldset.activities legend').after('<label class="error" id="activities-error"><font color="red">Please select at least one activity</font></label>');
+$('#activities-error').hide();
+function validateActivites() {
+    if ($('fieldset.activities legend').val() === true) {
+        $('#activities-error').show();
+    } else {
+        $('#activities-error').hide();
+    }
+}
