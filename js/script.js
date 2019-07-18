@@ -163,7 +163,7 @@ function validateEmail() {
 $('fieldset.activities legend').after('<label class="error" id="activities-error"><font color="red">Please select at least one activity</font></label>');
 $('#activities-error').hide();
 function validateActivites() {
-    if ($('fieldset.activities legend').val() === true) {
+    if ($('.activities.input:checked').length < 0) {
         $('#activities-error').show();
     } else {
         $('#activities-error').hide();
