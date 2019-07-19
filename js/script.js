@@ -138,6 +138,7 @@ $('#payment').on('change', function () {
 
 
 //Adding error text
+
 $('label[for="name"]').after('<label class="error" id="name-error"><font color="red">Name field must not be empty</font></label>');
 
 
@@ -154,17 +155,19 @@ function validateName() {
 $('label[for="mail"]').after('<label class="error" id="email-error"><font color="red">Please enter a valid email address</font></label>');
 
 
-function validateEmail(email) {
-    let valid = /^\S/.test(email)
-
+const validateEmail = (email) => {
+    const valid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(email);
     if (valid) {
         $('#email-error').hide();
-        return true
+        return true;
     } else {
         $('#email-error').show();
-        return false
+        return false;
     }
 }
+
+
+
 
 $('fieldset.activities legend').after('<label class="error" id="activities-error"><font color="red">Please select at least one activity</font></label>');
 
@@ -179,39 +182,70 @@ function validateActivites() {
 }
 $('label[for="cc-num"]').after('<label class="error" id="cc-error"><font color="red">Please enter a valid Credit Card number</font></label>');
 
-function validateCCNum() {
-    if ($('#cc-num').val() === "") {
-        $('#cc-error').show();
-        return false
-    } else {
+function validateCCNum(cc) {
+    const valid = /^\d{13,16}$/.test(cc);
+    if (valid) {
         $('#cc-error').hide();
         return true
+    } else {
+        $('#cc-error').show();
+        return false
     }
 
 }
 
 $('label[for="zip"]').after('<label class="error" id="zipcode-error"><font color="red">Please enter a valid zip code</font></label>');
 
-function validateZip() {
-    if ($('#zip').val() === "") {
-        $('#zipcode-error').show();
-        return false
-    } else {
+function validateZip(zip) {
+    const valid = /^\d{5}$/.test(zip);
+    if (valid) {
         $('#zipcode-error').hide();
         return true
+    } else {
+        $('#zipcode-error').show();
+        return false
     }
 
 }
 
 $('label[for="cvv"]').after('<label class="error" id="cvv-error"><font color="red">Please enter a valid CVV number </font></label>');
 
-function validateCvv() {
-    if ($('#cvv').val() === "") {
-        $('#cvv-error').show();
-        return false
-    } else {
+function validateCvv(cvv) {
+
+    const valid = /^\d{3}$/.test(cvv);
+    if (valid) {
         $('#cvv-error').hide();
         return true
+    } else {
+        $('#cvv-error').show();
+        return false
     }
 
 }
+
+$('.error').hide();
+
+function validation() {
+    if ($('#payment').val() === 'credit card') {
+        if (validateName() && validateEmail(email) && validateActivites() && validateCCNum(cc) && validateZip(zip) && validateCvv(cvv)) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        if (validateName() && validateEmail(email) && validateActivites()) {
+
+        } else {
+            return false;
+        }
+    }
+}
+
+$('form').on('submit', function (e) {
+    if (validation()) {
+        window.location.reload();
+    }
+    else {
+        e.preventDefault();
+    }
+});
